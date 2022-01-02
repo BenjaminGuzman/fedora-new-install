@@ -1,0 +1,27 @@
+[global_config]
+  geometry_hinting = True
+  title_transmit_bg_color = "#281232"
+  suppress_multiple_term_dialog = True
+[keybindings]
+  next_tab = <Primary>Page_Up
+  prev_tab = <Primary>Page_Down
+[profiles]
+  [[default]]
+    audible_bell = True
+    background_color = "#281232"
+    background_darkness = 0.9
+    background_type = transparent
+    cursor_color = "#aaaaaa"
+    font = Source Code Pro 13
+    foreground_color = "#d3d7cf"
+    scrollback_lines = 1000
+    use_system_font = False
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+[plugins]
