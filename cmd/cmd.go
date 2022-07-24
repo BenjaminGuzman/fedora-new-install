@@ -1,25 +1,25 @@
 package cmd
 
 import (
-    "fmt"
-    "os/exec"
-    "log"
-    "os"
+	"fmt"
+	"log"
+	"os"
+	"os/exec"
 )
 
 type Cmd struct {
 	name string
-	cmd string
+	cmd  string
 	sudo bool
 }
 
-// Creates a new Cmd with sudo: true and the given name and cmd
+// NewCmd Creates a new Cmd with sudo: true and the given name and cmd
 // cmd: the actual command to be executed
 func NewCmd(name string, cmd string) *Cmd {
 	return &Cmd{name, cmd, true}
 }
 
-func (c *Cmd) String() string{
+func (c *Cmd) String() string {
 	return fmt.Sprintf("%s. Command: %s\n", c.name, c.cmd)
 }
 
@@ -32,7 +32,7 @@ func (c *Cmd) Run() {
 	}
 	cmd := exec.Command("bash", "-c", cmdStr)
 
-	// redirec to command output to parent (this go process)
+	// redirect command's output to parent (this go process)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 
@@ -40,4 +40,3 @@ func (c *Cmd) Run() {
 		log.Fatal(err)
 	}
 }
-
