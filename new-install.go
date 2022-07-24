@@ -20,18 +20,18 @@ func getOptions() *InstallOptions {
 	// define flags
 	var opts InstallOptions
 	var installAllLangs bool
-	flag.BoolVar(&opts.node, "node", false, "Indicate if NodeJS should be installed")
-	flag.BoolVar(&opts.java, "java", false, "Indicate if Java 11 & 17 (devel) should be installed")
-	flag.BoolVar(&opts.go_, "go", false, "Indicate if Go should be installed")
-	flag.BoolVar(&opts.c, "c", false, "Indicate if dev tools and libraries for C should be installed")
-	flag.BoolVar(&opts.math, "math", false, "Indicate if math tools (octave, rstudio, texstudio) should be installed")
+	flag.BoolVar(&opts.node, "node", false, "Indicate if NodeJS should be installed. Default: false")
+	flag.BoolVar(&opts.java, "java", false, "Indicate if Java 11 & 17 (devel) should be installed. Default: false")
+	flag.BoolVar(&opts.go_, "go", false, "Indicate if Go should be installed. Default: false")
+	flag.BoolVar(&opts.c, "c", false, "Indicate if dev tools and libraries for C should be installed. Default: false")
+	flag.BoolVar(&opts.math, "math", false, "Indicate if math tools (octave, rstudio, texstudio) should be installed. Default: false")
 	flag.BoolVar(
 		&installAllLangs,
 		"langs",
 		false,
-		"Indicate if you want to install all languages (NodeJS, Java, Go, C). Default: false. Overrides --node, --java, --go, --c",
+		"Indicate if you want to install all languages (NodeJS, Java, Go, C). Overrides --node, --java, --go, --c. Default: false",
 	)
-	flag.BoolVar(&opts.librewolf, "librewolf", false, "Indicate if LibreWolf should be installed")
+	flag.BoolVar(&opts.librewolf, "librewolf", false, "Indicate if LibreWolf should be installed. Default: false")
 
 	// parse CLI flags
 	flag.Parse()
