@@ -32,6 +32,7 @@ func getOptions() *InstallOptions {
 		"Indicate if you want to install all languages (NodeJS, Java, Go, C). Overrides --node, --java, --go, --c. Default: false",
 	)
 	flag.BoolVar(&opts.librewolf, "librewolf", false, "Indicate if LibreWolf should be installed. Default: false")
+	flag.BoolVar(&opts.ohMyZsh, "ohmyzsh", false, "Indicate if Oh My Zsh should be installed. Default: false")
 
 	// parse CLI flags
 	flag.Parse()
@@ -49,11 +50,11 @@ func main() {
 		cmd.NewCmd("Update system", "dnf update -y --refresh"),
 		cmd.NewCmd(
 			"Install useful programs",
-			"dnf install -y latte-dock terminator thunderbird vim firewalld firewall-config chromium kgpg stacer dia git htop peek mpv",
+			"dnf install -y terminator thunderbird vim firewalld firewall-config chromium kgpg stacer dia git htop peek",
 		),
 		cmd.NewCmd("Disable services", "systemctl disable --now cups sshd geoclue"),
 		cmd.NewCmd("Set firewall default zone to block", "firewall-cmd --set-default-zone=block"),
-		cmd.NewCmd("Remove package managers", "dnf install -y flatpak snapd"),
+		cmd.NewCmd("Remove package managers", "dnf remove -y flatpak snapd"),
 		cmd.NewCmd("Install security & network tools", "dnf install -y nmap wireshark clamav clamav-update rkhunter"),
 		cmd.NewCmd("Lock root account", "usermod -L root"),
 	}
@@ -97,7 +98,7 @@ func main() {
 			),
 			cmd.NewCmd(
 				"Install LibreWolf",
-				"sudo dnf install -y librewolf",
+				"dnf install -y librewolf",
 			),
 		)
 	}
@@ -105,7 +106,7 @@ func main() {
 		pendingCmds = append(
 			pendingCmds,
 			cmd.NewCmd("Install zsh", "dnf install -y zsh"),
-			cmd.NewCmd("Install oh-my-zsh", "echo Installation of oh my zsh is interactive, so you'd need to run sh -c \"$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)\""),
+			cmd.NewCmd("Install oh-my-zsh", "echo Installation of oh my zsh is interactive, so it is not run by this program"),
 		)
 	}
 
@@ -120,6 +121,7 @@ func main() {
 	fmt.Println("2. Set static IP")
 	fmt.Println("3. Configure the DNS to block adds. See https://github.com/Ultimate-Hosts-Blacklist/Ultimate.Hosts.Blacklist")
 	fmt.Println("4. Disable file search")
+	fmt.Println("5. Import SSH & GPG keys if needed")
 
 	fmt.Println("\nHave a nice experience with your new Fedora installation 🙃")
 }
