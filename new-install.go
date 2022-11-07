@@ -56,7 +56,7 @@ func main() {
 		cmd.NewCmd("Set firewall default zone to block", "firewall-cmd --set-default-zone=block"),
 		cmd.NewCmd("Remove package managers", "dnf remove -y flatpak snapd"),
 		cmd.NewCmd("Install security & network tools", "dnf install -y nmap wireshark clamav clamav-update rkhunter"),
-		cmd.NewCmd("Lock root account", "usermod -L root"),
+		cmd.NewCmd("Lock root account", "usermod --expiredate 1 -L root"),
 	}
 
 	if opts.node {
